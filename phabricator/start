@@ -10,6 +10,7 @@ config set mysql.user "root"
 config set mysql.pass "$MYSQL_ENV_MYSQL_ROOT_PASSWORD"
 config set pygments.enabled "true"
 [ "$BASE_URI" ] && config set phabricator.base-uri "$BASE_URI"
+[ "$PHABULOUS_PORT_8085_TCP_ADDR" ] && config set feed.http-hooks "[\"http://$PHABULOUS_PORT_8085_TCP_ADDR:$PHABULOUS_PORT_8085_TCP_PORT/v1/feed/receive\"]"
 
 while storage status 2>&1 >/dev/null | grep -q "Can't connect to MySQL"
 do
